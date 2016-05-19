@@ -1,0 +1,132 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>Curso</title> 
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" href="../css/jquery.mobile-1.3.1.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/curso.css">
+
+  <script type="text/javascript">
+       $(document).ready(function () {
+      $.ajax({
+          url: "http://emiapi.esy.es/cursos/todos",
+          type: 'GET',
+            success: function (data) {
+              //alert(data);
+              var cursos=$.parseJSON(data).cursos;
+              //console.log($.parseJSON(data));
+              //alert($.parseJSON(data).eventos[1]);
+             var result='';
+             var parametro = 1;
+
+
+              $.each(cursos, function(i,curso){
+                //alert(evento.descripcion);
+
+                var evento_id = curso.Eventos_idEvento;
+                if (evento_id == parametro) {
+
+              
+                var curso3='<div class="ui-bar ui-bar-a">';
+
+                var nombre_curso= '<h3>'+ curso.nombre +'</h3>';
+
+                var datos_curso1='<div class="ui-body ui-body-d">';
+
+                var descripcion_curso= '<p>'+curso.descripcion+'</p>';
+                             
+                var dia_hora_curso = '<p><b>Dia:</b>'+ curso.dia_hora +'</p>';
+                        
+                var duracion_curso ='<p><b>Duracion:</b>' +  curso.Duracion +'horas</p>';
+              
+              
+
+                result = curso3 +' '+nombre_curso+ ' '+ datos_curso1+ ' '+ descripcion_curso+' '+dia_hora_curso +' ' +duracion_curso + '</div></div>';
+
+             
+              $("div#div_curso").append(result);
+
+            }
+
+               
+              
+//$("div#div_curso").listview('refresh');   
+
+  
+
+
+            
+                 } ) ;    
+
+                  
+            },
+             error: function (xhr, ajaxOptions, thrownError) {
+                     
+                      alert(xhr.status +" "+thrownError); //404 Not found
+            }
+      });
+
+            return false;
+        
+
+    }); 
+</script>
+
+</head> 
+<body> 
+
+<div data-role="page">
+
+  <div data-role="header" data-position="fixed">
+    <a href="eventos.html" data-role="button">Atras</a>
+    <h1>Curso</h1>
+  </div><!-- /header -->
+
+  <div data-role="content"> 
+  	<div class="ui-corner-all custom-corners" id="div_curso">
+    
+
+    <!--	<div class="ui-bar ui-bar-a">
+        	<h3>Curso 1</h3>
+      	</div>
+
+
+     <div class="ui-body ui-body-d" >
+       <p>Descripcion</p>
+        <ul>
+        	<li>
+            <p><b>Hora:</b>
+            18:00 - 20:00</p>
+            </li>
+            
+            <li style="line-stacking:block-line-height">
+            
+            <label >Docente:</label>
+            <p>Señor x</p>
+            </li>
+                        
+        </ul>
+        
+      </div>
+    </div> --> 
+    
+    
+    
+   
+
+  </div><!-- /content -->
+
+  <div data-role="footer" data-position="fixed">
+   <div data-role="content"> 
+  <img src="../images/logo_utn.png" width="400" height="79" alt="UTN San Francisco">
+  </div>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>

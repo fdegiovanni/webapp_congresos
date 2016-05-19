@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>Login</title> 
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+  <link rel="javascript" type="text/js" href="js/loginA.js">
+</head> 
+<body> 
+
+<div data-role="page">
+
+  <div data-role="header" data-position="fixed">
+    
+    <h1>Inicio</h1>
+  </div><!-- /header -->
+<div data-role="content"> 
+
+<div data-role="form">
+	<form id="loginForm" method="post" name="loginForm">
+		<label>Correo :</label>
+		<input type="text" name="username" id="username"/>
+		<label>Contraseña :</label>
+		<input type="password" name="password" id="password"/>
+        <p>Olvido su contraseña? <a href="#">Reestablecer</a></p> 
+        <p> <a href="pages/registrar.html">Registrar</a></p>  
+		<input type="button" value="Login" id="submit"  />
+	</form>
+ </div>
+<p> <a href="pages/eventos.html">Probar eventos</a></p> 
+<!-- <p> <a href="pages/pruebaLibros.html">Probar libros</a></p> 
+<p> <a href="pages/prueba.html">Probar </a></p> 
+  <p> <a href="pages/prueba2.html">Probar </a></p>-->
+
+   	
+
+  </div><!-- /content -->
+
+  <div data-role="footer" data-position="fixed">
+  <div data-role="content"> 
+  <img src="images/logo_utn.png" width="400" height="79" alt="UTN San Francisco">
+  </div>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>
