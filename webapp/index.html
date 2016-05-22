@@ -6,10 +6,15 @@
   <meta charset="utf-8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" />
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-  <link rel="javascript" type="text/js" href="js/loginA.js">
+
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+
 </head> 
 <body> 
 
@@ -20,7 +25,7 @@
     <h1>Inicio</h1>
   </div><!-- /header -->
 <div data-role="content"> 
-
+<h1>Inicia sesión:</h1>
 <div data-role="form">
 	<form id="loginForm" method="post" name="loginForm">
 		<label>Correo :</label>
@@ -32,7 +37,7 @@
 		<input type="button" value="Login" id="submit"  />
 	</form>
  </div>
-<p> <a href="pages/eventos.html">Probar eventos</a></p> 
+<p> <a href="eventos.html">Probar eventos</a></p> 
 <!-- <p> <a href="pages/pruebaLibros.html">Probar libros</a></p> 
 <p> <a href="pages/prueba.html">Probar </a></p> 
   <p> <a href="pages/prueba2.html">Probar </a></p>-->
@@ -48,6 +53,20 @@
   </div>
 
 </div><!-- /page -->
+
+ <script type="text/javascript">
+  $("#submit").click(function(){
+     alert("Deberia conectarse a la api. Pero no lo pudimos probar.");
+     
+     var usuario=$('input:text[name=username]').val();
+     var contrasenia=$('input:password[name=password]').val();
+
+     alert(usuario+' '+contrasenia);
+
+
+
+});
+</script>
 
 </body>
 </html>
