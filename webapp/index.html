@@ -8,9 +8,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css" />
+<script src="jquery-1.11.1.min.js"></script>
+<script src="jquery/jquery.mobile-1.4.5.min.js"></script>
 
 
 
@@ -59,7 +59,9 @@
      alert("Deberia conectarse a la api. Pero no lo pudimos probar.");
      
      var usuario=$('input:text[name=username]').val();
+      usuario=usuario.toLowerCase();
      var contrasenia=$('input:password[name=password]').val();
+      contrasenia=contrasenia.toLowerCase();
 
      alert(usuario+' '+contrasenia);
 
