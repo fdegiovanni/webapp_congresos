@@ -7,108 +7,107 @@
   <meta charset="utf-8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="stylesheet" href="jquery.mobile-1.3.1.css" />
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="lista.css" />
-  <link rel="stylesheet" type="text/css" href="estilo_eventos.css">
-  <link rel="stylesheet" href="../css/jquery.mobile-1.3.1.css" />
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 
 
     <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css" />
     <script src="jquery-1.11.1.min.js"></script>
     <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="lista.css" />
+    <link rel="stylesheet" type="text/css" href="estilo_eventos.css">
 
 
-  
 <script type="text/javascript">
-       $(document).ready(function () {
-      $.ajax({
-          url: "http://emiapi.esy.es/eventos/todos",
-          type: 'GET',
+    function cargarEventos() {
+        $.ajax({
+            url: "http://emiapi.esy.es/eventos/todos",
+            type: 'GET',
             success: function (data) {
-              //alert(data);
-              var eventos=$.parseJSON(data).eventos;
-              //console.log($.parseJSON(data));
-              //alert($.parseJSON(data).eventos[1]);
-             var result='';
-              $.each(eventos, function(i,evento){
-                //alert(evento.descripcion);
-                
-                var nombre=evento.nombre;
-                var descripcion=evento.descripcion;
-                var lugar=evento.lugar;
-                var inicio=evento.fecha_inicio;
-                var fin=evento.fecha_fin;
-                var evento_id=evento.idEvento;
-               
+                //alert(data);
+                var eventos=$.parseJSON(data).eventos;
+                //console.log($.parseJSON(data));
+                //alert($.parseJSON(data).eventos[1]);
+                var result='';
+                $.each(eventos, function(i,evento){
+                    //alert(evento.descripcion);
+
+                    var nombre=evento.nombre;
+                    var descripcion=evento.descripcion;
+                    var lugar=evento.lugar;
+                    var inicio=evento.fecha_inicio;
+                    var fin=evento.fecha_fin;
+                    var evento_id=evento.idEvento;
 
 
 
 
-                //var lista_eventos=' <ul data-role="listview" class="ui-listview-outer" data-inset="true" data-shadow="false">';
 
-                var evento='<li data-role="collapsible" data-iconpos="right" data-inset="false" id="link_curso" >';
+                    //var lista_eventos=' <ul data-role="listview" class="ui-listview-outer" data-inset="true" data-shadow="false">';
 
-                var nombre_evento= '<h2>'+ nombre +'</h2>';
+                    var evento='<li data-role="collapsible" data-iconpos="right" data-inset="false" id="link_curso" >';
 
-                var datos_evento1='<ul data-role="listview" class="ui-listview-outer" data-inset="true">'+
-                  '<li data-role="collapsible" data-iconpos="right" data-shadow="false" data-corners="false">';
+                    var nombre_evento= '<h2>'+ nombre +'</h2>';
 
-                var descripcion_evento= '<h6>'+descripcion+'</h6>';
+                    var datos_evento1='<ul data-role="listview" class="ui-listview-outer" data-inset="true">'+
+                            '<li data-role="collapsible" data-iconpos="right" data-shadow="false" data-corners="false">';
 
-                var datos_evento2='<ul data-role="listview" data-shadow="false" data-inset="true" data-corners="false">';
+                    var descripcion_evento= '<h6>'+descripcion+'</h6>';
 
-                var lugar_evento='<li id="lugar"> <p> <b>Lugar:</b>'+ lugar +'</p></li>';
+                    var datos_evento2='<ul data-role="listview" data-shadow="false" data-inset="true" data-corners="false">';
 
-                var inicio_evento='<li id="inicio"> <p> <b>Inicio:</b>'+ inicio +'</p></li>';
+                    var lugar_evento='<li id="lugar"> <p> <b>Lugar:</b>'+ lugar +'</p></li>';
 
-                var fin_evento='<li id="fin"> <p> <b>Hasta:</b>'+ fin +'</p></li>';
+                    var inicio_evento='<li id="inicio"> <p> <b>Inicio:</b>'+ inicio +'</p></li>';
 
-                var valor_id= '<li id="id_del_evento" style.display = "none"> <p> <b>ID:</b>'+ evento_id +'</p></li>';
+                    var fin_evento='<li id="fin"> <p> <b>Hasta:</b>'+ fin +'</p></li>';
 
-
-               // result=' <ul data-role="listview" class="ui-listview-outer" data-inset="true" data-shadow="false">'+evento+nombre_evento+datos_evento1+descripcion_evento+datos_evento2+lugar_evento+inicio_evento+fin_evento+cerrado_de_evento+'</li>';
-               result='<li data-role="collapsible" data-iconpos="right" data-inset="false" id="nombre"> <a href="cursos.html" >'+nombre_evento+'</a>'+descripcion_evento+ ' '+lugar_evento+ ' '+inicio_evento+ ' '+fin_evento+valor_id+'</li>';
-
-               $("ul#listaEventos").append(result);
-               $('li#id_del_evento').hide();
+                    var valor_id= '<li id="id_del_evento" style.display = "none"> <p> <b>ID:</b>'+ evento_id +'</p></li>';
 
 
-              
-$("ul#listaEventos").listview('refresh');   
+                    // result=' <ul data-role="listview" class="ui-listview-outer" data-inset="true" data-shadow="false">'+evento+nombre_evento+datos_evento1+descripcion_evento+datos_evento2+lugar_evento+inicio_evento+fin_evento+cerrado_de_evento+'</li>';
+                    result='<li data-role="collapsible" data-iconpos="right" data-inset="false" id="nombre"> <a href="cursos.html?evento_id='+evento_id +'" >'+nombre_evento+'</a>'+descripcion_evento+ ' '+lugar_evento+ ' '+inicio_evento+ ' '+fin_evento+valor_id+'</li>';
 
-  
-
-
-                alert(result);
-                console.log(result);
-                
-                
+                    $("ul#listaEventos").append(result);
+                    $('li#id_del_evento').hide();
 
 
-                
-                
+
+                    $("ul#listaEventos").listview('refresh');
 
 
-                        // $("ul#clientList").append(result);
-                         //$("ul#clientList").listview('refresh');
-                 } ) ;    
 
-                  
+
+                    alert(result);
+                    console.log(result);
+
+
+
+
+
+
+
+
+                    // $("ul#clientList").append(result);
+                    //$("ul#clientList").listview('refresh');
+                } ) ;
+
+
             },
-             error: function (xhr, ajaxOptions, thrownError) {
-                     
-                      alert(xhr.status +" "+thrownError); //404 Not found
+            error: function (xhr, ajaxOptions, thrownError) {
+
+                alert(xhr.status +" "+thrownError); //404 Not found
             }
-      });
+        });
 
-            return false;
-        
+        return false;
 
-    }); 
+
+    }
+</script>
+
+
+<script type="text/javascript">
+       $(document).ready(cargarEventos());
+
 </script>
 
 
@@ -200,14 +199,17 @@ $("ul#listaEventos").listview('refresh');
 });
 </script>
 
-<!--
- <script type="text/javascript">
-  $("#link_curso").click(function(){
-    var id=
-     alert("La app deberia cerrarse.");
+      <script type="text/javascript">
+          $("#refresh").click(function(){
 
-});
-</script>-->
+              location.reload();
+
+          });
+      </script>
+
+<script type="text/javascript">
+
+</script>
 
   </div><!-- /content -->
 
@@ -215,8 +217,9 @@ $("ul#listaEventos").listview('refresh');
   <div data-role="content"> 
   <img src="images/logo_utn.png" width="400" height="79" alt="UTN San Francisco">
   </div>
-</
+</div>
 </div><!-- /page -->
 
 </body>
+
 </html>

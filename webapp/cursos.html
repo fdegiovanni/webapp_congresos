@@ -5,81 +5,102 @@
   <meta name="viewport" content="initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="stylesheet" href="jquery.mobile-1.3.1.css" />
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="curso.css">
 
     <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css" />
     <script src="jquery-1.11.1.min.js"></script>
     <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="curso.css">
 
-  
+<script type="text/javascript">
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
+
+
+</script>
+
+
 
   <script type="text/javascript">
-       $(document).ready(function () {
-      $.ajax({
-          url: "http://emiapi.esy.es/cursos/todos",
-          type: 'GET',
-            success: function (data) {
-              //alert(data);
-              var cursos=$.parseJSON(data).cursos;
-              //console.log($.parseJSON(data));
-              //alert($.parseJSON(data).eventos[1]);
-             var result='';
-             var parametro = 1;
+      function cargarCursos(parametro) {
+          $.ajax({
+              url: "http://emiapi.esy.es/cursos/todos",
+              type: 'GET',
+              success: function (data) {
+                  //alert(data);
+                  var cursos=$.parseJSON(data).cursos;
+                  //console.log($.parseJSON(data));
+                  //alert($.parseJSON(data).eventos[1]);
+                  var result='';
 
 
-              $.each(cursos, function(i,curso){
-                //alert(evento.descripcion);
 
-                var evento_id = curso.Eventos_idEvento;
-                if (evento_id == parametro) {
+                  $.each(cursos, function(i,curso){
+                      //alert(evento.descripcion);
 
-              
-                var curso3='<div class="ui-bar ui-bar-a">';
-
-                var nombre_curso= '<h3>'+ curso.nombre +'</h3>';
-
-                var datos_curso1='<div class="ui-body ui-body-d">';
-
-                var descripcion_curso= '<p>'+curso.descripcion+'</p>';
-                             
-                var dia_hora_curso = '<p><b>Dia:</b>'+ curso.dia_hora +'</p>';
-                        
-                var duracion_curso ='<p><b>Duracion:</b>' +  curso.Duracion +'horas</p>';
-              
-              
-
-                result = curso3 +' '+nombre_curso+ ' '+ datos_curso1+ ' '+ descripcion_curso+' '+dia_hora_curso +' ' +duracion_curso + '</div></div>';
-
-             
-              $("div#div_curso").append(result);
-
-            }
-
-               
-              
-//$("div#div_curso").listview('refresh');   
-
-  
+                      var evento_id = curso.Eventos_idEvento;
+                      if (evento_id == parametro) {
 
 
-            
-                 } ) ;    
+                          var curso3='<div class="ui-bar ui-bar-a">';
 
-                  
-            },
-             error: function (xhr, ajaxOptions, thrownError) {
-                     
-                      alert(xhr.status +" "+thrownError); //404 Not found
-            }
-      });
+                          var nombre_curso= '<h3>'+ curso.nombre +'</h3>';
 
-            return false;
-        
+                          var datos_curso1='<div class="ui-body ui-body-d">';
 
-    }); 
+                          var descripcion_curso= '<p>'+curso.descripcion+'</p>';
+
+                          var dia_hora_curso = '<p><b>Dia:</b>'+ curso.dia_hora +'</p>';
+
+                          var duracion_curso ='<p><b>Duracion:</b>' +  curso.Duracion +'horas</p>';
+
+
+
+                          result = curso3 +' '+nombre_curso+ ' '+ datos_curso1+ ' '+ descripcion_curso+' '+dia_hora_curso +' ' +duracion_curso + '</div></div>';
+
+
+                          $("div#div_curso").append(result);
+
+                      }
+
+
+
+//$("div#div_curso").listview('refresh');
+
+
+
+
+
+                  } ) ;
+
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+
+                  alert(xhr.status +" "+thrownError); //404 Not found
+              }
+          });
+
+          return false;
+
+
+      }
+  </script>
+
+  <script type="text/javascript">
+      var id = getUrlVars()["evento_id"];
+       $(document).ready(cargarCursos(id));
+
 </script>
 
 </head> 
@@ -135,4 +156,5 @@
 </div><!-- /page -->
 
 </body>
+
 </html>
